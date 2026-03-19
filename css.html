@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS | Raunak Poudel</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Raunak Poudel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="fullstack.html">Full Stack</a></li>
+        <li class="nav-item"><a class="nav-link" href="html.html">HTML</a></li>
+        <li class="nav-item"><a class="nav-link active" href="css.html">CSS</a></li>
+        <li class="nav-item"><a class="nav-link" href="bootstrap.html">Bootstrap</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <h1>CSS — Cascading Style Sheets</h1>
+    <p>Section 03 &mdash; CET138 Assignment 1 &mdash; Raunak Poudel</p>
+  </div>
+</div>
+
+<div class="container mb-5">
+
+  <!-- What is CSS -->
+  <h2 class="section-title">What is CSS?</h2>
+  <p>
+    CSS (Cascading Style Sheets) is the language used to control the appearance of HTML documents. 
+    While HTML defines the structure, CSS defines how it looks — colours, fonts, spacing, and layout.
+  </p>
+  <p>
+    The word "cascading" refers to the order in which styles are applied. More specific rules override 
+    less specific ones (e.g. an ID selector overrides a class selector).
+  </p>
+
+  <!-- Syntax -->
+  <h2 class="section-title">CSS Syntax</h2>
+  <p>A CSS rule has a <strong>selector</strong> and a <strong>declaration block</strong>:</p>
+  <div class="code-box">/* Selector { property: value; } */
+
+h1 {
+  color: blue;
+  font-size: 2rem;
+}
+
+.card {
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#main-title {
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Pseudo-class */
+a:hover {
+  color: red;
+  text-decoration: underline;
+}</div>
+
+  <!-- Box Model -->
+  <h2 class="section-title">The Box Model</h2>
+  <p>
+    Every HTML element is treated as a rectangular box. The box model has four layers:
+  </p>
+  <ul>
+    <li><strong>Content</strong> — the actual text or image inside</li>
+    <li><strong>Padding</strong> — space between content and the border</li>
+    <li><strong>Border</strong> — the outline of the element</li>
+    <li><strong>Margin</strong> — space outside the border, separating elements</li>
+  </ul>
+  <div class="code-box">.box {
+  margin: 20px;        /* Outside spacing */
+  border: 2px solid black;
+  padding: 15px;       /* Inside spacing */
+  width: 200px;
+}</div>
+
+  <!-- Flexbox -->
+  <h2 class="section-title">Flexbox</h2>
+  <p>Flexbox is a CSS layout system that makes it easy to align and distribute items in a row or column.</p>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="code-box">.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.item {
+  flex: 1;
+  background: #0d6efd;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 4px;
+}</div>
+    </div>
+    <div class="col-md-6">
+      <p>Result:</p>
+      <div class="demo-box">
+        <div class="demo-box-header">Preview</div>
+        <div class="demo-box-body">
+          <div style="display:flex;gap:.5rem;justify-content:space-between;">
+            <div style="flex:1;background:#0d6efd;color:white;padding:.6rem;text-align:center;border-radius:4px;font-size:.85rem">Item 1</div>
+            <div style="flex:1;background:#0d6efd;color:white;padding:.6rem;text-align:center;border-radius:4px;font-size:.85rem">Item 2</div>
+            <div style="flex:1;background:#0d6efd;color:white;padding:.6rem;text-align:center;border-radius:4px;font-size:.85rem">Item 3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Media Queries -->
+  <h2 class="section-title">Responsive Design — Media Queries</h2>
+  <p>Media queries allow different styles to be applied depending on the screen size. This is how websites are made responsive.</p>
+  <div class="code-box">/* Default styles (mobile) */
+.container {
+  width: 100%;
+}
+
+/* Tablet and above */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container {
+    width: 960px;
+  }
+}</div>
+
+  <!-- CSS Variables -->
+  <h2 class="section-title">CSS Variables (Custom Properties)</h2>
+  <p>CSS variables allow you to define reusable values that can be used throughout your stylesheet.</p>
+  <div class="code-box">:root {
+  --primary-color: #0d6efd;
+  --font-size-base: 16px;
+  --border-radius: 6px;
+}
+
+.button {
+  background-color: var(--primary-color);
+  font-size: var(--font-size-base);
+  border-radius: var(--border-radius);
+}</div>
+
+  <!-- Transitions -->
+  <h2 class="section-title">Transitions &amp; Animations</h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="code-box">/* Smooth hover transition */
+.btn {
+  background: #0d6efd;
+  transition: background 0.3s ease;
+}
+.btn:hover {
+  background: #0a58ca;
+}
+
+/* Keyframe animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.box {
+  animation: fadeIn 1s ease;
+}</div>
+    </div>
+    <div class="col-md-6">
+      <p>Hover over the button to see the transition:</p>
+      <div class="demo-box">
+        <div class="demo-box-header">Preview</div>
+        <div class="demo-box-body text-center">
+          <style>
+            .hover-demo {
+              background:#0d6efd; color:white; border:none;
+              padding:.6rem 1.6rem; border-radius:6px; font-size:.9rem;
+              cursor:pointer; transition: background 0.3s ease, transform 0.2s;
+            }
+            .hover-demo:hover { background:#0a58ca; transform: scale(1.05); }
+          </style>
+          <button class="hover-demo">Hover Me!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <div class="d-flex justify-content-between mt-4">
+    <a href="html.html" class="btn btn-secondary">&larr; HTML</a>
+    <a href="bootstrap.html" class="btn btn-primary">Next: Bootstrap &rarr;</a>
+  </div>
+
+</div>
+
+<footer class="bg-primary text-white text-center py-3 mt-4">
+  <p class="mb-0">&copy; 2025 Raunak Poudel &nbsp;|&nbsp; raunakpoudel0@gmail.com &nbsp;|&nbsp; CET138 Assignment 1</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

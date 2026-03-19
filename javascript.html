@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript | Raunak Poudel</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Raunak Poudel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="fullstack.html">Full Stack</a></li>
+        <li class="nav-item"><a class="nav-link" href="html.html">HTML</a></li>
+        <li class="nav-item"><a class="nav-link" href="css.html">CSS</a></li>
+        <li class="nav-item"><a class="nav-link" href="bootstrap.html">Bootstrap</a></li>
+        <li class="nav-item"><a class="nav-link active" href="javascript.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <h1>JavaScript</h1>
+    <p>Section 05 &mdash; CET138 Assignment 1 &mdash; Raunak Poudel</p>
+  </div>
+</div>
+
+<div class="container mb-5">
+
+  <!-- What is JS -->
+  <h2 class="section-title">What is JavaScript?</h2>
+  <p>
+    JavaScript is a programming language that runs in the browser. It makes web pages 
+    <strong>interactive and dynamic</strong> — it can respond to user actions (clicks, typing), 
+    update the page content without reloading, validate forms, and communicate with servers.
+  </p>
+  <p>
+    JavaScript can also run on the backend using <strong>Node.js</strong>, making it a full-stack language.
+  </p>
+
+  <!-- Variables & Data Types -->
+  <h2 class="section-title">Variables &amp; Data Types</h2>
+  <div class="code-box">// Declaring variables
+let name = "Raunak Poudel";       // String
+const age = 20;                    // Number (constant)
+var isStudent = true;              // Boolean (old way)
+
+// Template literals
+let greeting = `Hello, ${name}!`; // "Hello, Raunak Poudel!"
+
+// Arrays
+let languages = ["HTML", "CSS", "JavaScript"];
+console.log(languages[0]);         // "HTML"
+
+// Objects
+let student = {
+  name: "Raunak",
+  email: "raunakpoudel0@gmail.com",
+  year: 1
+};
+console.log(student.name);         // "Raunak"</div>
+
+  <!-- Functions -->
+  <h2 class="section-title">Functions</h2>
+  <div class="code-box">// Function declaration
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+
+// Arrow function
+const add = (a, b) => a + b;
+
+// Calling functions
+console.log(greet("Raunak"));     // "Hello, Raunak!"
+console.log(add(5, 3));           // 8</div>
+
+  <!-- DOM Manipulation -->
+  <h2 class="section-title">DOM Manipulation</h2>
+  <p>JavaScript can select and modify HTML elements using the Document Object Model (DOM).</p>
+  <div class="code-box">// Select elements
+const heading = document.getElementById("main-title");
+const buttons = document.querySelectorAll(".btn");
+
+// Change content
+heading.innerHTML = "New Title";
+heading.style.color = "blue";
+
+// Add event listener
+document.getElementById("myBtn").addEventListener("click", function() {
+  alert("Button clicked!");
+});</div>
+
+  <!-- Interactive Demo 1: Counter -->
+  <h2 class="section-title">Demo 1 — Counter (DOM + Events)</h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="code-box">let count = 0;
+
+function increment() {
+  count++;
+  document.getElementById("count").innerHTML = count;
+}
+
+function decrement() {
+  count--;
+  document.getElementById("count").innerHTML = count;
+}
+
+function reset() {
+  count = 0;
+  document.getElementById("count").innerHTML = count;
+}</div>
+    </div>
+    <div class="col-md-6">
+      <p>Try it:</p>
+      <div class="demo-box">
+        <div class="demo-box-header">Interactive Demo</div>
+        <div class="demo-box-body text-center">
+          <h2 id="count-display" class="display-4 fw-bold text-primary">0</h2>
+          <p class="text-muted small">Current Count</p>
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-danger" onclick="decrement()">− Decrement</button>
+            <button class="btn btn-secondary" onclick="resetCount()">Reset</button>
+            <button class="btn btn-success" onclick="increment()">+ Increment</button>
+          </div>
+          <p id="count-msg" class="text-muted mt-2 small"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Demo 2: To-Do List -->
+  <h2 class="section-title">Demo 2 — To-Do List (Arrays + DOM)</h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="code-box">let todos = [];
+
+function addTodo() {
+  const input = document
+    .getElementById("todo-input");
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  todos.push({ id: Date.now(), text });
+  input.value = "";
+  renderTodos();
+}
+
+function removeTodo(id) {
+  todos = todos.filter(t => t.id !== id);
+  renderTodos();
+}
+
+function renderTodos() {
+  const list = document
+    .getElementById("todo-list");
+  list.innerHTML = todos.map(t =>
+    `&lt;li class="list-group-item 
+      d-flex justify-content-between"&gt;
+      ${t.text}
+      &lt;button onclick="removeTodo(${t.id})"
+        class="btn btn-sm btn-outline-danger"&gt;
+        Remove
+      &lt;/button&gt;
+    &lt;/li&gt;`
+  ).join("");
+}</div>
+    </div>
+    <div class="col-md-6">
+      <p>Try it:</p>
+      <div class="demo-box">
+        <div class="demo-box-header">Interactive Demo</div>
+        <div class="demo-box-body">
+          <div class="input-group mb-3">
+            <input type="text" id="todo-input" class="form-control" placeholder="Enter a task..."
+              onkeydown="if(event.key==='Enter') addTodo()">
+            <button class="btn btn-primary" onclick="addTodo()">Add</button>
+          </div>
+          <ul id="todo-list" class="list-group"></ul>
+          <p id="todo-empty" class="text-muted text-center small mt-2">No tasks yet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Demo 3: Fetch API -->
+  <h2 class="section-title">Demo 3 — Fetch API (Async/Await)</h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="code-box">// Fetch data from a public API
+async function fetchJoke() {
+  const output = document
+    .getElementById("joke-output");
+
+  output.textContent = "Loading...";
+
+  try {
+    const response = await fetch(
+      "https://official-joke-api.appspot.com/random_joke"
+    );
+    const data = await response.json();
+
+    output.textContent =
+      data.setup + " — " + data.punchline;
+
+  } catch (error) {
+    output.textContent = "Error loading joke.";
+  }
+}</div>
+    </div>
+    <div class="col-md-6">
+      <p>Try it:</p>
+      <div class="demo-box">
+        <div class="demo-box-header">Interactive Demo</div>
+        <div class="demo-box-body">
+          <p class="text-muted small">Fetches a joke from a real public API:</p>
+          <button class="btn btn-primary mb-3" onclick="fetchJoke()">Get a Random Joke</button>
+          <div class="alert alert-info" id="joke-output">
+            Click the button to fetch a joke!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loops & Conditionals -->
+  <h2 class="section-title">Loops &amp; Conditionals</h2>
+  <div class="code-box">// For loop
+for (let i = 1; i <= 5; i++) {
+  console.log("Number: " + i);
+}
+
+// While loop
+let x = 0;
+while (x < 3) {
+  console.log(x);
+  x++;
+}
+
+// If / else
+const score = 72;
+
+if (score >= 70) {
+  console.log("Pass");
+} else if (score >= 50) {
+  console.log("Borderline");
+} else {
+  console.log("Fail");
+}
+
+// Ternary operator
+const result = score >= 70 ? "Pass" : "Fail";</div>
+
+  <!-- Nav -->
+  <div class="d-flex justify-content-between mt-4">
+    <a href="bootstrap.html" class="btn btn-secondary">&larr; Bootstrap</a>
+    <a href="index.html" class="btn btn-primary">Back to Home &rarr;</a>
+  </div>
+
+</div>
+
+<footer class="bg-primary text-white text-center py-3 mt-4">
+  <p class="mb-0">&copy; 2025 Raunak Poudel &nbsp;|&nbsp; raunakpoudel0@gmail.com &nbsp;|&nbsp; CET138 Assignment 1</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Counter
+  let count = 0;
+  function increment() {
+    count++;
+    document.getElementById('count-display').textContent = count;
+    document.getElementById('count-msg').textContent = 'Incremented to ' + count;
+  }
+  function decrement() {
+    count--;
+    document.getElementById('count-display').textContent = count;
+    document.getElementById('count-msg').textContent = 'Decremented to ' + count;
+  }
+  function resetCount() {
+    count = 0;
+    document.getElementById('count-display').textContent = count;
+    document.getElementById('count-msg').textContent = 'Counter reset.';
+  }
+
+  // To-Do
+  let todos = [];
+  function addTodo() {
+    const input = document.getElementById('todo-input');
+    const text = input.value.trim();
+    if (!text) return;
+    todos.push({ id: Date.now(), text });
+    input.value = '';
+    renderTodos();
+  }
+  function removeTodo(id) {
+    todos = todos.filter(t => t.id !== id);
+    renderTodos();
+  }
+  function renderTodos() {
+    const list = document.getElementById('todo-list');
+    const empty = document.getElementById('todo-empty');
+    if (todos.length === 0) {
+      list.innerHTML = '';
+      empty.style.display = 'block';
+    } else {
+      empty.style.display = 'none';
+      list.innerHTML = todos.map(t =>
+        `<li class="list-group-item d-flex justify-content-between align-items-center">
+          ${t.text}
+          <button onclick="removeTodo(${t.id})" class="btn btn-sm btn-outline-danger">Remove</button>
+        </li>`
+      ).join('');
+    }
+  }
+
+  // Fetch Joke
+  async function fetchJoke() {
+    const output = document.getElementById('joke-output');
+    output.textContent = 'Loading...';
+    try {
+      const res = await fetch('https://official-joke-api.appspot.com/random_joke');
+      const data = await res.json();
+      output.innerHTML = `<strong>${data.setup}</strong><br>${data.punchline}`;
+    } catch (e) {
+      output.textContent = 'Error loading joke. Check your connection.';
+    }
+  }
+</script>
+</body>
+</html>
